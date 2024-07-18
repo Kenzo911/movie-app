@@ -1,0 +1,59 @@
+.detail-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    padding: 20px;
+    background-color: black;
+    color: white;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .poster img {
+    width: 400px;
+    height: auto;
+  }
+  
+  .movie-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    align-self: center; 
+  }
+
+  .tagline {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 20px;
+    align-self: center;
+  }
+  .description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .additional-info {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .genres {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .genre {
+    background-color: #000000;
+    color: rgb(0, 0, 0);
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+  }
+  
