@@ -1,35 +1,67 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { Dropdown } from 'react-bootstrap';
 import Avatar from '../assets/images/avatar.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Navbar.css';
 
 function Navbar() {
   const [query, setQuery] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (query.trim() !== "") {
-      navigate(`/search?query=${encodeURIComponent(query)}`); 
+      navigate(`/search?query=${encodeURIComponent(query)}`);
+      setShowSearch(false); 
     }
   };
 
+  const toggleSearchBar = () => {
+    setShowSearch(!showSearch);
+  };
+
   return (
-    <nav className="navbar text-white fixed-top" style={{ marginLeft: "250px", backgroundColor: "black" }}>
-      <div className="container-fluid" style={{ marginTop: "20px"}}>
-        <form className="d-flex" role="search" onSubmit={handleSearch} 
-          style={{marginLeft:"35px"}}
-        >
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button className="btn btn-outline-danger" type="submit">Search</button>
-        </form>
-        <a className="navbar-brand text-white"><img src={Avatar} alt="Avatar" /></a>
+    <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-black">
+      <div className="container-fluid custom-container d-flex justify-content-between align-items-center">
+        <Link to="/" className="navbar-brand" style={{ fontSize: '24px', fontWeight: 'bold', color: 'red' }}>
+          KENZOFLIX
+        </Link>
+        <div className="d-flex align-items-center">
+          {showSearch ? (
+            <div className="d-flex align-items-center search-container">
+              <form className="d-flex search-form" role="search" onSubmit={handleSearch}>
+                <input
+                  className="form-control"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </form>
+              <button type="button" className="btn-close" aria-label="Close" onClick={toggleSearchBar} style={{ filter: 'invert(1)' }}></button>
+            </div>
+          ) : (
+            <Dropdown align="end">
+              <Dropdown.Toggle variant="black" id="dropdown-basic" className="p-0 m-0 border-0 bg-transparent">
+                <img src={Avatar} alt="Avatar" className="avatar-image" />
+              </Dropdown.Toggle>
+              <Dropdown.Menu style={{ backgroundColor: 'black', border: '1px solid white' }}>
+                <Dropdown.Item as={Link} to="/favorites" className="text-white dropdown-item">
+                  Favorites
+                </Dropdown.Item>
+                <Dropdown.Item onClick={toggleSearchBar} className="text-white dropdown-item">
+                  Search
+                </Dropdown.Item>
+                <Dropdown.Item as={Link} to="/about" className="text-white dropdown-item">
+                  About
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          )}
+        </div>
       </div>
     </nav>
   );

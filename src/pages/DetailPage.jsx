@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './DetailPage.css';
+import Navbar from '../components/Navbar';
 
 function DetailPage() {
   const { id } = useParams();
@@ -14,7 +15,7 @@ function DetailPage() {
       method: 'GET',
       headers: {
         accept: 'application/json',
-          Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`
       }
     };
 
@@ -64,6 +65,7 @@ function DetailPage() {
 
   return (
     <div className="detail-container">
+      <Navbar />
       <div className="poster">
         <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
       </div>
@@ -73,12 +75,12 @@ function DetailPage() {
         <p className="description">{movie.overview}</p>
         <div className="additional-info">
           <p><strong>Release Date:</strong> {movie.release_date}</p>
-          <p><strong>Durations:</strong> {movie.runtime} minutes</p>
+          <p><strong>Duration:</strong> {movie.runtime} minutes</p>
           <p><strong>Vote Average:</strong> {movie.vote_average}/10</p>
           <p><strong>Vote Count:</strong> {movie.vote_count}</p>
         </div>
         <div className="genres">
-        {movie.genres.map(genre => (
+          {movie.genres.map(genre => (
             <span key={genre.id} className="genre">{genre.name}</span>
           ))}
         </div>

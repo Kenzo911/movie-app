@@ -1,59 +1,88 @@
 .detail-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px;
-    padding: 20px;
-    background-color: black;
-    color: white;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .poster img {
-    width: 400px;
-    height: auto;
-  }
-  
-  .movie-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-  
-  .title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    align-self: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 20px;
+}
+
+.poster {
+  margin-left: 0;
+}
+
+.poster img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.movie-info {
+  margin-top: 20px;
+  text-align: center;
+  max-width: 800px;
+}
+
+.movie-info .title {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.movie-info .tagline {
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.movie-info .description {
+  margin-bottom: 20px;
+}
+
+.movie-info .additional-info {
+  margin-bottom: 20px;
+}
+
+.movie-info .genres .genre {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+  border: 1px solid white;
+  border-radius: 20px;
+}
+
+.btn {
+  width: 100%;
+  width: 200px;
+}
+
+@media (min-width: 768px) {
+  .detail-container {
+    flex-direction: row;
+    justify-content: center;
   }
 
-  .tagline {
-    font-size: 1.2rem;
-    font-style: italic;
-    margin-bottom: 20px;
-    align-self: center;
+  .poster {
+    margin-left: 0;
+    margin-right: 20px;
   }
-  .description {
-    font-size: 1rem;
-    line-height: 1.5;
+
+  .poster img {
+    width: 500px; 
   }
-  
-  .additional-info {
-    font-size: 1rem;
-    margin-bottom: 20px;
+
+  .movie-info {
+    margin-top: 0;
+    margin-left: 50px;
+    text-align: left;
   }
-  
-  .genres {
-    display: flex;
-    flex-wrap: wrap;
+}
+
+@media (min-width: 992px) {
+  .poster img {
+    width: 600px; 
   }
-  
-  .genre {
-    background-color: #000000;
-    color: rgb(0, 0, 0);
-    padding: 5px 10px;
-    margin: 5px;
-    border-radius: 3px;
-    font-size: 0.9rem;
+
+  .movie-info .title {
+    font-size: 2.5em; 
   }
-  
+}
