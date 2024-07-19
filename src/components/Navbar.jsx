@@ -28,24 +28,25 @@ function Navbar() {
         <Link to="/" className="navbar-brand" style={{ fontSize: '24px', fontWeight: 'bold', color: 'red' }}>
           KENZOFLIX
         </Link>
-        <div className="d-flex align-items-center flex-grow-1">
-          {showSearch && (
-            <form className="d-flex flex-grow-1" role="search" onSubmit={handleSearch}>
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-              <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          )}
-          <div className="avatar-container d-flex align-items-center ms-auto">
-            <Dropdown align="end">
+        <div className="d-flex align-items-center ml-auto">
+          {showSearch ? (
+            <div className="d-flex align-items-center search-container">
+              <form className="d-flex search-form" role="search" onSubmit={handleSearch}>
+                <input
+                  className="form-control"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </form>
+              <button type="button" className="btn-close" aria-label="Close" onClick={toggleSearchBar} style={{ filter: 'invert(1)' }}></button>
+            </div>
+          ) : (
+            <Dropdown align="end" style={{width:"160px"}}>
               <Dropdown.Toggle variant="black" id="dropdown-basic" className="p-0 m-0 border-0 bg-transparent">
-                <img src={Avatar} alt="Avatar" className="avatar-image" style={{marginLeft:"120px"}} />
+                <img src={Avatar} alt="Avatar" className="avatar-image" style={{marginLeft:"80px"}} />
               </Dropdown.Toggle>
               <Dropdown.Menu style={{ backgroundColor: 'black', border: '1px solid white' }}>
                 <Dropdown.Item as={Link} to="/favorites" className="text-white dropdown-item">
@@ -59,7 +60,7 @@ function Navbar() {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-          </div>
+          )}
         </div>
       </div>
     </nav>
